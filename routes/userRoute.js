@@ -9,8 +9,8 @@ router.post("/login", loginUser);
 router.get("/logout", logout);
 router.get("/getuser", protect,getUser);
 router.get("/loggedin", loginStatus);
-router.patch("/updateuser", protect, updateUser);
-router.patch("/changepassword", protect, changePassword);
+router.post("/updateuser", protect, updateUser);
+router.post("/changepassword", protect, changePassword);
 router.post("/forgotpassword",  forgotPassword);
 router.put("/resetpassword/:resetToken",  resetPassword);
 

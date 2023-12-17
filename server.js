@@ -12,15 +12,22 @@ const path = require("path");
 
 const app = express();
 
+
 // Middlewares
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    methods:["CONNECT"," DELETE", "GET","HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({
-  origin:["http://localhost:3000/","https://cartplus.vercel.app"],
-  credentials: true,
-}));
+
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -38,6 +45,7 @@ app.use("/api/contactus", contactRoute);
 
 // Routes
 app.get("/", (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
     res.send("Home Page");
   });
 
