@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "http://localhost:5000",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "backend": "nodemon index.js"
+    "start": "node server.js",
+    "backend": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
