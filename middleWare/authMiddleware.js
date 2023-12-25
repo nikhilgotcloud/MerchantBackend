@@ -23,7 +23,7 @@ const protect = asyncHandler(async (req, res, next) => {
             httpOnly: true,
             secure: true, // Make sure to set this for HTTPS
             sameSite: "None",
-           
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Adjust the expiration as needed
         });
         req.user = user;
         next()
