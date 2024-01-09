@@ -145,6 +145,7 @@ const getUser = asyncHandler(async (req, res) => {
 const loginStatus = asyncHandler(async (req, res) => {
     const token = req.cookies.token;
     if (!token) {
+        clg
         return res.json(false)
     }
 
@@ -152,6 +153,12 @@ const loginStatus = asyncHandler(async (req, res) => {
     //verify token
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (verified) {
+        const domain = req.headers.origin;
+        res.cookie('token', token, {
+            domain: domain,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', 
+        });
         return res.json(true)
     }
     return res.json(false)
