@@ -16,7 +16,7 @@ const app = express();
 // Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://merchant-frontend.onrender.com"],
+    origin: ["http://localhost:3000","https://merchant-frontend-h1gv.onrender.com"],
     credentials: true,
     methods:["CONNECT"," DELETE", "GET","HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
