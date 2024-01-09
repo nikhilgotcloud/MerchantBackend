@@ -9,7 +9,7 @@ const protect = asyncHandler(async (req, res, next) => {
             res.status(401)
             throw new Error("Not authorized ,please login")
         }
-
+    
         //verify token
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         // get user id from token
