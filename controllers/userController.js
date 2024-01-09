@@ -145,7 +145,7 @@ const getUser = asyncHandler(async (req, res) => {
 const loginStatus = asyncHandler(async (req, res) => {
     const token = req.cookies.token;
     if (!token) {
-        clg
+    
         return res.json(false)
     }
 
