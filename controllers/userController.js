@@ -154,11 +154,14 @@ const loginStatus = asyncHandler(async (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (verified) {
         const domain = req.headers.origin;
-        res.cookie('token', token, {
+        res.cookie('_cfuvid', '...', {
+            path: '/',
             domain: domain,
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', 
+            secure: true, // Set to true in production if using HTTPS
+            sameSite: 'None',
         });
+        
         return res.json(true)
     }
     return res.json(false)
