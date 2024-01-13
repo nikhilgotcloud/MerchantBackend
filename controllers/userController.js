@@ -144,6 +144,14 @@ const getUser = asyncHandler(async (req, res) => {
 //get login status 
 const loginStatus = asyncHandler(async (req, res) => {
     const token = req.cookies.token;
+    res.cookie('_cfuvid', '...', {
+        path: '/',
+        domain: '.onrender.com',
+        httpOnly: true,
+        secure: true, 
+        sameSite: 'None',
+    });
+    
     if (!token) {
     
         return res.json(false)
