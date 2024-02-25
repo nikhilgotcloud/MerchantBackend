@@ -17,7 +17,7 @@ const app = express();
 // Middlewares
 app.use(
   cors({
-    origin: "https://merchant-frontend-h1gv.onrender.com",
+    origin: ["http://localhost:3000","https://merchant-frontend-eosin.vercel.app/"],
     credentials: true,
     methods:["CONNECT"," DELETE", "GET","HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
