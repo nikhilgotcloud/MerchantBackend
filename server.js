@@ -9,6 +9,7 @@ const contactRoute = require("./routes/contactRoute");
 const errorHandler =require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -25,6 +26,13 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+
+
+app.use((_, res, next) => {
+  res.setHeader('Set-Cookie', 'HttpOnly;Secure;SameSite=None');
+  next();
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
