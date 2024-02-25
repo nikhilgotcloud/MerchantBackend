@@ -9,7 +9,7 @@ const contactRoute = require("./routes/contactRoute");
 const errorHandler =require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-
+const helmet= require("helmet");
 
 const app = express();
 
@@ -17,13 +17,14 @@ const app = express();
 // Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://merchant-frontend-h1gv.onrender.com"],
+    origin: "https://merchant-frontend-h1gv.onrender.com",
     credentials: true,
     methods:["CONNECT"," DELETE", "GET","HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
 
   })
 );
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
