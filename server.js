@@ -15,15 +15,20 @@ const app = express();
 
 
 // Middlewares
-app.use(
-  cors({
-    origin: ["http://localhost:3000","https://merchant-frontend-eosin.vercel.app/"],
-    credentials: true,
-    methods:["CONNECT"," DELETE", "GET","HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+app.use(cors({
+  origin: (origin, callback) => {
+    const allowedOrigins = ["http://localhost:3000", "https://merchant-frontend-eosin.vercel.app"];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods:["CONNECT"," DELETE", "GET","HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
-  })
-);
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
